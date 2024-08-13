@@ -4,11 +4,11 @@ const app = new Hono();
 
 app.get("/feedbacks/:id", async (c) => {
   const id = c.req.param("id");
-  return c.text(`Feedback ${id}: ${feedbackService.getFeedbacks(id)}`);
+  return c.text(`Feedback ${id}: ${await feedbackService.getFeedbacks(id)}`);
 });
 
 app.post("/feedbacks/:id", async (c) => {
   const id = c.req.param("id");
-  feedbackService.increaseFeedback(id);
+  await feedbackService.increaseFeedback(id);
 });
 export default app;
